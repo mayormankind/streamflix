@@ -55,7 +55,7 @@ export function Navbar() {
               </SheetTrigger>
               <SheetContent
                 side="left"
-                className="w-70 bg-background/98 p-0 pt-12 backdrop-blur-xl"
+                className="w-[280px] bg-background/98 p-0 pt-12 backdrop-blur-xl"
               >
                 <SheetHeader className="px-6 pb-6 text-left">
                   <SheetTitle className="text-2xl font-bold tracking-tighter text-primary">
@@ -81,9 +81,10 @@ export function Navbar() {
               </SheetContent>
             </Sheet>
           </div>
+
           <Link
             href="/"
-            className="text-xl md:text-2xl font-bold tracking-tighter text-primary"
+            className="text-xl font-bold tracking-tighter text-primary md:text-2xl"
           >
             STREAMFLIX
           </Link>
