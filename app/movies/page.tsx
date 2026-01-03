@@ -20,13 +20,14 @@ export default async function MoviesPage() {
       media: movie.media,
       video: movie.video,
     }));
-  const featured = MOVIES[1]
+    const featured = MOVIES[1] ?? MOVIES[0] ?? null
 
   return (
     <main className="min-h-screen bg-background pb-20">
       <Navbar />
 
       {/* Featured Movie Hero */}
+      {featured && (
       <section className="relative h-[70vh] w-full md:h-[80vh]">
         <div className="absolute inset-0">
           {featured.media && <img
@@ -64,6 +65,7 @@ export default async function MoviesPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* Content Rows */}
       <div className="relative z-10 -mt-16 space-y-12 px-4 md:px-12">
