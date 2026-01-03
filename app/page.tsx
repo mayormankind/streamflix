@@ -1,7 +1,6 @@
 //app/page.tsx
 import { Navbar } from "@/components/navbar"
 import { MovieCard } from "@/components/movie-card"
-// import { fetchMovies } from "@/lib/api-client"
 import { Button } from "@/components/ui/button"
 import { Info, Play } from "lucide-react"
 import Link from "next/link"

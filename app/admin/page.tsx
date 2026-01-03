@@ -1,15 +1,28 @@
-import { Navbar } from "@/components/navbar"
-import { AdminSidebar } from "@/components/admin-sidebar"
-import { fetchMovies } from "@/lib/api-client"
 import { Button } from "@/components/ui/button"
 import { Plus, Play, TrendingUp, History, Film, SettingsIcon } from "lucide-react"
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { ViewershipChart } from "@/components/viewership-chart"
+import { MovieService } from "@/services/movieService"
+
+
+export const dynamic = "force-dynamic";
 
 export default async function AdminPage() {
-  const movies = await fetchMovies()
+  const dbMovies = await MovieService.getAllMovies();
+    // Transform the movies to plain objects to avoid serialization issues
+    const movies = dbMovies.map((movie) => ({
+      id: movie._id.toString(),
+      title: movie.title,
+      description: movie.description,
+      genre: movie.genre,
+      year: movie.year,
+      rating: movie.rating,
+      duration: movie.duration,
+      media: movie.media,
+      video: movie.video,
+    }));
   const totalMovies = movies.length
   const recentMovies = movies.filter((m) => m.year === 2024).length
 
