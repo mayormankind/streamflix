@@ -9,10 +9,11 @@ import { authMiddleware, unauthorizedResponse } from '@/lib/auth-middleware';
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> } 
+//   { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
+    const { id } = await context.params;
     const movie = await MovieService.getMovieById(id);
 
     if (!movie) {
@@ -57,7 +58,8 @@ export async function GET(
  */
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
+//   { params }: { params: { id: string } }
 ) {
   try {
     // Verify admin authentication
@@ -66,7 +68,7 @@ export async function PUT(
       return unauthorizedResponse(authResult.error);
     }
 
-    const { id } = await params;
+    const { id } = await context.params;
     const body = await request.json();
 
     // Update movie
@@ -114,7 +116,8 @@ export async function PUT(
  */
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
+//   { params }: { params: { id: string } }
 ) {
   try {
     // Verify admin authentication
@@ -123,7 +126,7 @@ export async function DELETE(
       return unauthorizedResponse(authResult.error);
     }
 
-    const { id } = await params;
+    const { id } = await context.params;
     const deleted = await MovieService.deleteMovie(id);
 
     if (!deleted) {
