@@ -1,13 +1,25 @@
 import { Navbar } from "@/components/navbar"
 import { MovieCard } from "@/components/movie-card"
-// import { MOVIES } from "@/lib/mock-data"
 import { Button } from "@/components/ui/button"
 import { Play, Info } from "lucide-react"
 import Link from "next/link"
-import { fetchMovies } from "@/lib/api-client"
+import { MovieService } from "@/services/movieService"
+
 
 export default async function MoviesPage() {
-  const MOVIES = await fetchMovies()
+   const dbMovies = await MovieService.getAllMovies();
+    // Transform the movies to plain objects to avoid serialization issues
+    const MOVIES = dbMovies.map((movie) => ({
+      id: movie._id.toString(),
+      title: movie.title,
+      description: movie.description,
+      genre: movie.genre,
+      year: movie.year,
+      rating: movie.rating,
+      duration: movie.duration,
+      media: movie.media,
+      video: movie.video,
+    }));
   const featured = MOVIES[1]
 
   return (
