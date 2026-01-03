@@ -2,9 +2,10 @@
 
 import { useState, useEffect, useRef } from "react"
 import { SearchIcon, X } from "lucide-react"
-import { MOVIES, type Movie } from "@/lib/mock-data"
+import { MOVIES } from "@/lib/mock-data"
 import { MovieCard } from "@/components/movie-card"
 import { cn } from "@/lib/utils"
+import { Movie } from "@/lib/api-client"
 
 export function Search() {
   const [isOpen, setIsOpen] = useState(false)
