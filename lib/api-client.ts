@@ -1,3 +1,4 @@
+//lib/api-client.ts
 // API client utilities for frontend
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';

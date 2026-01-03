@@ -1,3 +1,4 @@
+//services/movieService.ts
 import Movie, { IMovie } from '@/models/Movie';
 import dbConnect from '@/lib/db';
 

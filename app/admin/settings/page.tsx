@@ -1,8 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { Navbar } from "@/components/navbar"
-import { AdminSidebar } from "@/components/admin-sidebar"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -20,12 +18,7 @@ export default function AdminSettingsPage() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col bg-background">
-      <Navbar />
-      <div className="mt-20 flex flex-1">
-        <AdminSidebar />
-
-        <section className="flex-1 p-6 md:p-12">
+    <section className="flex-1 p-6 md:p-12">
           <div className="mb-8">
             <h1 className="text-3xl font-bold">Settings</h1>
             <p className="text-muted-foreground">Manage your application settings and preferences</p>
@@ -191,8 +184,6 @@ export default function AdminSettingsPage() {
               </Button>
             </div>
           </div>
-        </section>
-      </div>
-    </main>
+    </section>
   )
 }

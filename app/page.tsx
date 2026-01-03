@@ -1,13 +1,31 @@
+//app/page.tsx
 import { Navbar } from "@/components/navbar"
 import { MovieCard } from "@/components/movie-card"
-import { fetchMovies } from "@/lib/api-client"
+// import { fetchMovies } from "@/lib/api-client"
 import { Button } from "@/components/ui/button"
 import { Info, Play } from "lucide-react"
 import Link from "next/link"
+import { MovieService } from "@/services/movieService"
+
+// Explicitly mark as dynamic (because DB access is runtime)
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const movies = await fetchMovies()
-  const featured = movies[0] || {
+  const dbMovies = await MovieService.getAllMovies();
+  // Transform the movies to plain objects to avoid serialization issues
+  const movies = dbMovies.map((movie) => ({
+    id: movie._id.toString(),
+    title: movie.title,
+    description: movie.description,
+    genre: movie.genre,
+    year: movie.year,
+    rating: movie.rating,
+    duration: movie.duration,
+    media: movie.media,
+    video: movie.video,
+  }));
+  
+  const featured = movies[0] ?? {
     id: "1",
     title: "No Movies Available",
     description: "Please add movies from the admin dashboard",

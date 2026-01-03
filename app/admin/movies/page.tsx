@@ -1,9 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Navbar } from "@/components/navbar"
-import { AdminSidebar } from "@/components/admin-sidebar"
-import { fetchMovies, createMovie, updateMovie, deleteMovie, isAuthenticated, type Movie } from "@/lib/api-client"
+import { fetchMovies, createMovie, updateMovie, deleteMovie, type Movie } from "@/lib/api-client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -44,12 +42,6 @@ export default function AdminMoviesPage() {
   })
 
   useEffect(() => {
-    // Check authentication
-    if (!isAuthenticated()) {
-      router.push("/admin/login")
-      return
-    }
-
     loadMovies()
   }, [router])
 
@@ -187,12 +179,7 @@ export default function AdminMoviesPage() {
   )
 
   return (
-    <main className="flex min-h-screen flex-col bg-background">
-      <Navbar />
-      <div className="mt-20 flex flex-1">
-        <AdminSidebar />
-
-        <section className="flex-1 p-6 md:p-12">
+    <section className="flex-1 p-6 md:p-12">
           <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-center">
             <div>
               <h1 className="text-3xl font-bold">Movies Management</h1>
@@ -299,7 +286,7 @@ export default function AdminMoviesPage() {
                         </div>
                         <div>
                           <div className="font-medium">{movie.title}</div>
-                          <div className="line-clamp-1 text-xs text-muted-foreground">{movie.description}</div>
+                          <div className="line-clamp-1 text-xs text-muted-foreground">{movie.description.slice(0,100)}</div>
                         </div>
                       </TableCell>
                       <TableCell>{movie.genre}</TableCell>
@@ -334,7 +321,5 @@ export default function AdminMoviesPage() {
             </Table>
           </div>
         </section>
-      </div>
-    </main>
   )
 }
