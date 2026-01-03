@@ -29,11 +29,11 @@ export default async function MoviesPage() {
       {/* Featured Movie Hero */}
       <section className="relative h-[70vh] w-full md:h-[80vh]">
         <div className="absolute inset-0">
-          <img
+          {featured.media && <img
             src={featured.media.backdrop || "/placeholder.svg"}
             alt={featured.title}
             className="h-full w-full object-cover brightness-[0.5]"
-          />
+          />}
           <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
         </div>
