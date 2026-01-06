@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { Play, Plus, ChevronDown } from "lucide-react";
 import type { Movie } from "@/lib/api-client";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 
 interface MovieCardProps {
   movie: Movie;
